@@ -1,86 +1,9 @@
 [
   {
-    "model": "catalog.category",
-    "pk": 1,
-    "fields": {
-      "name": "Ведущие проекты",
-      "description": "Ведущие проекты от разработчиков Sky"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 2,
-    "fields": {
-      "name": "Стартаппы",
-      "description": "Стартаппы от Sky"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 3,
-    "fields": {
-      "name": "Веб-приложения",
-      "description": "Веб-приложения от Sky"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 4,
-    "fields": {
-      "name": "Сайты",
-      "description": "Сайты от  Sky"
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 5,
-    "fields": {
-      "name": "machine intelligence",
-      "description": "Применение искусственного интелекта в машиностроении",
-      "image": "",
-      "category": 1,
-      "price": 3000000,
-      "created_at": null,
-      "updated_at": null
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 6,
-    "fields": {
-      "name": "Чат-боты",
-      "description": "Разработка ботов в телеграм",
-      "image": "",
-      "category": 2,
-      "price": 200000,
-      "created_at": null,
-      "updated_at": null
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 7,
-    "fields": {
-      "name": "Доставка еды",
-      "description": "Приложение для заказа и доставки блюд из ресторанов",
-      "image": "",
-      "category": 3,
-      "price": 500000,
-      "created_at": null,
-      "updated_at": null
-    }
-  },
-  {
-    "model": "catalog.product",
-    "pk": 8,
-    "fields": {
-      "name": "Кибербезопасность.ру",
-      "description": "Сайт о кибербезопасности",
-      "image": "",
-      "category": 4,
-      "price": 100000,
-      "created_at": null,
-      "updated_at": null
-    }
-  }
-]
+    "fields" : {
+      "description" : "Самые необходимые мясные продукты",
+      "name" : "Мясные изделия"
+    },
+    "model" : "catalog.category",
+    "pk" : 1
+  }, {"model": "catalog.category", "pk": 2, "fields": {"name": "Напитки", "description": "Лучшие напитки"}}, {"model": "catalog.category", "pk": 3, "fields": {"name": "Сладости", "description": "Наши сладости"}}, {"model": "catalog.category", "pk": 4, "fields": {"name": "выпечка", "description": ""}}, {"model": "catalog.product", "pk": 1, "fields": {"name": "Мраморная говядина", "description": "лучшее мясо в городе", "photo": "", "category": 1, "price": 10000.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 2, "fields": {"name": "Ребра", "description": "лучшие ребра в городе", "photo": "", "category": 1, "price": 5000.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 3, "fields": {"name": "Крылья", "description": "лучшее крылья в городе", "photo": "", "category": 1, "price": 3000.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 4, "fields": {"name": "Кола", "description": "наш аналог той самой колы", "photo": "", "category": 2, "price": 100.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 5, "fields": {"name": "Фанта", "description": "наш аналог известной фанты", "photo": "", "category": 2, "price": 120.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 6, "fields": {"name": "Спрайт", "description": "Наш аналог спрайты", "photo": "", "category": 2, "price": 130.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 7, "fields": {"name": "Сникерс", "description": "тот самый известный батончик", "photo": "", "category": 3, "price": 50.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 8, "fields": {"name": "МилкиВей", "description": "вкусный очень", "photo": "", "category": 3, "price": 50.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}, {"model": "catalog.product", "pk": 9, "fields": {"name": "Киндер", "description": "сюрприз внутри", "photo": "", "category": 3, "price": 50.0, "created_at": "2024-09-02", "updated_at": "2024-09-02", "manufactured_at": "2024-09-02"}}]
