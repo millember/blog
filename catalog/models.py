@@ -21,7 +21,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-
     name = models.CharField(
         max_length=100,
         verbose_name="Наименование",
@@ -61,6 +60,11 @@ class Product(models.Model):
         help_text="Введите дату производства продукта нашего",
         blank=True,
         null=True,
+    )
+    views_counter = models.PositiveIntegerField(
+        verbose_name='Количество просмотров',
+        help_text="Укажите количество просмотров",
+        default=0
     )
 
     class Meta:
