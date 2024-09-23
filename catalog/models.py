@@ -2,14 +2,19 @@ from django.db import models
 
 
 # Create your models here.
+
+
+# создаем модель категории как одного ко многим
 class Category(models.Model):
+    # наименование, описание
     name = models.CharField(
-        max_length=100,
-        verbose_name="Наименование",
-        help_text="Введите наименование категории",
+        max_length=100, verbose_name="категория", help_text="Введите категорию продукта"
     )
     description = models.TextField(
-        verbose_name="Описание", help_text="Введите описание категории"
+        verbose_name="Описание категории",
+        help_text="Введите описание категории продукта",
+        blank=True,
+        null=True,
     )
 
     class Meta:
@@ -17,60 +22,59 @@ class Category(models.Model):
         verbose_name_plural = "Категории"
 
     def __str__(self):
-        return self.name
+        return f"{self.name} {self.description}"
 
 
+# создаем модель продуктов как многих к одной категории. Ссылка на категорию
+# создаем класс и наследуемся от models.Model
 class Product(models.Model):
+    # имя, порода, фото, дата рождения
+    # создаем поля и прописываем их параметры
     name = models.CharField(
         max_length=100,
-        verbose_name="Наименование",
-        help_text="Введите наименование продукта",
+        verbose_name="наименование",
+        help_text="введите наименование продукта",
     )
     description = models.TextField(
-        verbose_name="Описание", help_text="Введите описание продукта"
+        max_length=100, verbose_name="описание", help_text="Введите описание продукта"
     )
-    photo = models.ImageField(
-        upload_to="catalog/photo",
+    image = models.ImageField(
+        upload_to="catalog/image",
         blank=True,
         null=True,
-        verbose_name="Фото",
-        help_text="Загрузите фото продукта",
+        verbose_name="изображение",
+        help_text="загрузите изображение продукта",
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
         verbose_name="Категория",
-        help_text="Введите категорию продукта",
-        null=True,
-        blank=True,
-        related_name="products"
-    )
-    price = models.FloatField(verbose_name="Цена", help_text="Введите цену продукта")
-    created_at = models.DateField(
-        verbose_name="Дата создания", help_text="Введите дату создания продукта"
-    )
-    updated_at = models.DateField(
-        verbose_name="Дата последнего изменения",
-        help_text="Введите дату последнего изменения продукта",
+        help_text="введите категорию продукта",
         blank=True,
         null=True,
+        related_name="products",
     )
-    manufactured_at = models.DateField(
-        verbose_name="Дата производства продукта нашего",
-        help_text="Введите дату производства продукта нашего",
-        blank=True,
-        null=True,
+    price = models.PositiveIntegerField(default=0, )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+        verbose_name="дата создания",
+        help_text="Укажите дату создания записи в БД",
     )
-    views_counter = models.PositiveIntegerField(
-        verbose_name='Количество просмотров',
-        help_text="Укажите количество просмотров",
-        default=0
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name="дата последнего изменения",
+        help_text="Укажите дату изменения записи в БД",
     )
 
+    # Класс мета
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["category", "name"]
 
+    # строковое представление объекта
     def __str__(self):
-        return self.name
+        return f"{self.name} {self.category} {self.created_at}"
+
+

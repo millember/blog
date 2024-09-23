@@ -1,7 +1,21 @@
-from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 
+from catalog.forms import ProductForm
 from catalog.models import Product
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:product_list')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:product_list')
 
 
 class ProductListView(ListView):
@@ -10,30 +24,21 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
-
-    def __init__(self, **kwargs):
-        super().__init__(kwargs)
-        self.object = None
-
-    def get_object(self, queryset=None):
-        self.object = super().get_object(queryset)
-        self.object.views_counter += 1
-        self.object.save()
-        return self.object
-
-
-class ProductCreateView(CreateView):
-    model = Product
-    fields = ('name', "description", "price", "photo")
-    success_url = reverse_lazy("catalog:products_list")
-
-
-class ProductUpdateView(UpdateView):
-    model = Product
-    fields = ('name', "description", "price", "photo")
-    success_url = reverse_lazy("catalog:products_list")
+    success_url = reverse_lazy('catalog:product_list')
 
 
 class ProductDeleteView(DeleteView):
     model = Product
-    success_url = reverse_lazy("catalog:products_list")
+    success_url = reverse_lazy('catalog:product_list')
+
+
+class ContactsTemplateView(TemplateView):
+    template_name = "catalog/contacts.html"
+
+    def post(self, request):
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            phone = request.POST.get('phone')
+            message = request.POST.get('message')
+            print(f'{name} ({phone}): {message}')
+        return render(request, 'catalog/contacts.html')
