@@ -1,58 +1,53 @@
-import json
-
 from django.core.management import BaseCommand
+from catalog.models import Category, Product
+import json
+import os
 
-from catalog.models import Product, Category
+ROOT_DIR = os.path.dirname(__file__)
+# catalog.json
+file_path = os.path.join(ROOT_DIR, 'catalog.json')
 
 
 class Command(BaseCommand):
 
-    # Здесь мы получаем данные из фикстур с категориями
     @staticmethod
-    def json_read_categories():
-        with open('categories.json', 'r', encoding='utf-8') as f:
-            categories_data = f.read()
+    def json_categories() -> list:
+        """
+        Получение данных из фикстуры с категориями
+        :return: список с категориями
+        """
+        with open(file_path, encoding="utf-8") as file:
+            values = json.load(file)
+            print("value['model'] == catalog.category", values, end="\\")
+        categories = [value for value in values if value['model'] == "catalog.category"]
+        return categories
 
-        return json.loads(categories_data)
-
-    # Здесь мы получаем данные из фикстур с продуктами
     @staticmethod
-    def json_read_products():
-        with open('products.json', 'r', encoding='utf-8') as f:
-            products_data = f.read()
-
-        return json.loads(products_data)
+    def json_products() -> list:
+        """
+        Получение данных из фикстуры с продуктами
+        :return: список с продуктами
+        """
+        with open(file_path, encoding="utf-8") as file:
+            values = json.load(file)
+            print("value['model'] == catalog.product", values, end="\\")
+        products = [value for value in values if value['model'] == "catalog.product"]
+        return products
 
     def handle(self, *args, **options):
-        # Удалите все продукты и все категории
         Product.objects.all().delete()
         Category.objects.all().delete()
 
-        # Создайте списки для хранения объектов
-        product_for_create = []
         category_for_create = []
+        products_for_create = []
 
-        # Обходим все значения категорий из фиктсуры для получения информации об одном объекте
-        for category in Command.json_read_categories():
-            category_for_create.append(
-                Category(id=category['pk'],
-                         name=category["fields"]["name"],
-                         description=category["fields"]["description"])
-            )
+        for category in Command.json_categories():
+            category_for_create.append(Category(**category))
+
         Category.objects.bulk_create(category_for_create)
 
-        for product in Command.json_read_products():
-            product_for_create.append(
-                Product(pk=product["pk"],
-                        name=product["fields"]["name"],
-                        description=product["fields"]["description"],
-                        price=product["fields"]["price"],
-                        photo=product["fields"]["photo"],
-                        category=Category.objects.get(pk=product["fields"]["category"]),
-                        created_at=product["fields"]["created_at"],
-                        updated_at=product["fields"]["updated_at"],
-                        manufactured_at=product["fields"]["manufactured_at"])
-            )
+        for product in Command.json_products():
+            products_for_create.append(Product(**product))
 
-        # Создаем объекты в базе с помощью метода bulk_create()
-        Product.objects.bulk_create(product_for_create)
+        Product.objects.bulk_create(products_for_create)
+
