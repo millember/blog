@@ -39,7 +39,6 @@ INSTALLED_APPS = [
 
     "catalog",
     "blog",
-    "version"
 ]
 
 MIDDLEWARE = [
