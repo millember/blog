@@ -7,6 +7,7 @@ from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Version
 
 
+
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
