@@ -38,6 +38,7 @@ class ProductForm(StyleFormMixin, ModelForm):
                 )
         return cleaned_data
 
+
     def clean_description(self):
         cleaned_data = self.cleaned_data["description"]
         forbidden_words = [
