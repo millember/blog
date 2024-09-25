@@ -87,6 +87,7 @@ class Version(models.Model):
         verbose_name="Версия",
     )
 
+
     name = models.CharField(
         max_length=100,
         verbose_name="Наименование",
