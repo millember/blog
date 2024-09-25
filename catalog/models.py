@@ -17,6 +17,7 @@ class Category(models.Model):
         null=True,
     )
 
+
     class Meta:
         verbose_name = "Категория"
         verbose_name_plural = "Категории"
