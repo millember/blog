@@ -17,12 +17,13 @@
                         <li>- {{ product.description | slice:100 }}</li>
                     </ul>
                     <p class="text">Активная версия продукта: {{ version.is_active }}<p>
-                    <a class="btn btn-sm btn-outline-primary" href="{% url 'catalog:product_detail' product.pk %}"
-                       role="button">Посмотреть</a>
-                    <a class="btn btn-sm btn-outline-success" href="{% url 'catalog:product_update' product.pk %}"
-                       role="button">Изменить</a>
-                    <a class="btn btn-sm btn-outline-danger" href="{% url 'catalog:product_delete' product.pk %}"
-                       role="button">Удалить</a>
+                    <a class="btn btn-sm btn-outline-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button">Посмотреть</a>
+                    {% if perms.catalog.set_published_status and perms.catalog.can_edit_description and perms.catalog.can_edit_category or user == product.owner %}
+                        <a class="btn btn-sm btn-outline-success" href="{% url 'catalog:product_update' product.pk %}"
+                           role="button">Изменить</a>
+                        <a class="btn btn-sm btn-outline-danger" href="{% url 'catalog:product_delete' product.pk %}"
+                           role="button">Удалить</a>
+                     {% endif %}
                 </div>
             </div>
         </div>

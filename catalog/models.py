@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 
 # Create your models here.
 
@@ -80,6 +82,17 @@ class Product(models.Model):
         help_text="Укажите количество просмотров",
         default=0
     )
+
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        verbose_name="Владелец",
+        help_text="Введите владельца товара",
+        related_name="products",
+        blank=True,
+        null=True,
+    )
+    is_published = models.BooleanField(default=False, verbose_name="Опубликовано")
 
     # Класс мета
     class Meta:
