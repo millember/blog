@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.shortcuts import render
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
@@ -55,18 +55,10 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             )
 
     def get_form_class(self):
-        """
-        Проверка, что пользователь владелец товара,
-        Проверка прав модератора на редактирование товара
-        """
         user = self.request.user
         if user == self.object.owner:
             return ProductForm
-        if (
-                user.has_perm("catalog.set_published_status")
-                and user.has_perm("catalog.can_edit_description")
-                and user.has_perm("catalog.can_edit_category")
-        ):
+        if user.has_perm("catalog.can_edit_is_published"):
             return ProductModeratorForm
         raise PermissionDenied
 
