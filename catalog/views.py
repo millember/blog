@@ -58,7 +58,8 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         if user == self.object.owner:
             return ProductForm
-        if user.has_perm("catalog.can_edit_is_published"):
+        if user.has_perm("catalog.can_edit_category") and user.has_perm(
+                "catalog.can_edit_description") and user.has_perm("catalog.can_edit_is_published"):
             return ProductModeratorForm
         raise PermissionDenied
 

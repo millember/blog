@@ -1,7 +1,0 @@
-[{"model": "catalog.category", "pk": 1, "fields": {"title": "Смартфоны", "description": "Средства связи на ОС: android, IOS, MUI"}},
-  {"model": "catalog.category", "pk": 2, "fields": {"title": "Телевизоры", "description": "Ультратонкие OLED"}},
-  {"model": "catalog.product", "pk": 1, "fields": {"title": "Apple Iphon", "description": "Cмартфон IOS", "avatar": "", "category": 1, "price": 90000, "created_at": "2024-06-08", "updated_at": "2024-06-08"}},
-  {"model": "catalog.product", "pk": 2, "fields": {"title": "Samsung S23", "description": "Exinos", "avatar": "", "category": 1, "price": 50000, "created_at": "2024-06-10", "updated_at": "2024-06-10"}},
-  {"model": "catalog.product", "pk": 3, "fields": {"title": "Xsyomy", "description": "Cмартфон android", "avatar": "", "category": 1, "price": 45000, "created_at": "2024-06-10", "updated_at": "2024-06-10"}},
-  {"model": "catalog.product", "pk": 4, "fields": {"title": "Samsung", "description": "QLED", "avatar": "", "category": 2, "price": 90000, "created_at": "2024-06-10", "updated_at": "2024-06-10"}},
-  {"model": "catalog.product", "pk": 5, "fields": {"title": "LG-500", "description": "OLED", "avatar": "", "category": 2, "price": 70000, "created_at": "2024-06-10", "updated_at": "2024-06-10"}}]
