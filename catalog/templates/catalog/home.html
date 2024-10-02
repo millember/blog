@@ -1,4 +1,5 @@
 {% load static %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
     <p class="lead">Магазин продуктов - это отличный вариант для покупки товаров по выгодной цене</p>
     <a href="{% url 'blog:blog_list' %}" type="button" class="p-2 btn btn-outline-success">Мои блоги</a>
     <a href="{% url 'catalog:product_create' %}" type="button" class="p-2 btn btn-outline-success">Создать продукт</a>
+    <a href="{% url 'catalog:category_list' %}" type="button" class="p-2 btn btn-outline-success">Категории</a>
 </div>
 
 <div class="container">
